@@ -28,9 +28,14 @@ public class KnockKnockClient {
 
             while ((fromServer = in.readLine()) != null) {
                 System.out.println("S> " + fromServer);
-                if (fromServer.equals("bye")) {
+                if (fromServer.equals("return: -5")) {
                     System.out.println("receive: exit");
                     break;
+                }
+
+                if (fromServer.equals("return: -5 ")) {
+                    System.out.println("receive: exit");
+                    stdIn.close();
                 }
 
                 fromUser = stdIn.readLine();

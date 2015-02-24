@@ -30,9 +30,21 @@ public class KnockKnockServer {
 
             while ((inputLine = in.readLine()) != null) {
                 output = kkp.processInput(inputLine);
-                out.println("get " + inputLine + ", return: " + output);
-               if (outputLine.equals("bye"))
-                   break;
+                if(output > 0) {
+                  out.println("get " + inputLine + ", return: " + output);
+                } else {
+                  if(output == -7) {
+                    out.println("return: -5 ");
+                  
+                  } else if(output == -6) {
+                    out.println("return: -5");
+                    break;
+                  } else {
+                    out.println("return: " + output + " ");
+                  }
+                }
+               //if (outputLine.equals("bye"))
+                //   break;
             }
         } catch (IOException e) {
             System.out.println("Exception caught when trying to listen on port "
