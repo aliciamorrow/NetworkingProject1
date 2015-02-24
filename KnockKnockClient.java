@@ -35,7 +35,7 @@ public class KnockKnockClient {
 
                 if (fromServer.equals("return: -5 ")) {
                     System.out.println("receive: exit");
-                    stdIn.close();
+                    break;
                 }
 
                 fromUser = stdIn.readLine();

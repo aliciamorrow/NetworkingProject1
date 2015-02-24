@@ -1,7 +1,7 @@
 import java.net.*;
 import java.io.*;
 
-public class KnockKnockProtocol {
+public class Protocol {
     private static final int WAITING = 0;
     private static final int COMPUTATION = 1;
 
@@ -11,12 +11,12 @@ public class KnockKnockProtocol {
       //get and return IP address
       InetAddress ip;
       String theOutput = "";
-  	  try {
-    		ip = InetAddress.getLocalHost();
-    		theOutput = "get connection from IP:" + ip.getHostAddress();
-  	  } catch (UnknownHostException e) {
-    		e.printStackTrace();
-  	  }
+      try {
+        ip = InetAddress.getLocalHost();
+        theOutput = "S> get connection from IP:" + ip.getHostAddress();
+      } catch (UnknownHostException e) {
+        e.printStackTrace();
+      }
       return theOutput;
     }
 

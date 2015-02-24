@@ -1,13 +1,13 @@
 import java.net.*;
 import java.io.*;
 
-public class KnockKnockServer {
+public class Server {
     public static void main(String[] args) throws IOException {
       boolean flag = true;
       while(flag) {
 
         if (args.length != 1) {
-            System.err.println("Usage: java KnockKnockServer <port number>");
+            System.err.println("Usage: java Server <port number>");
             System.exit(1);
         }
 
@@ -24,27 +24,27 @@ public class KnockKnockServer {
 
             String inputLine, outputLine;
             int output;
-            // Initiate conversation with client
-            KnockKnockProtocol kkp = new KnockKnockProtocol();
-            output = kkp.processInput(null);
-            outputLine = kkp.startComm();
+            
+            Protocol protocol = new Protocol();
+            output = protocol.processInput(null);
+            outputLine = protocol.startComm();
+            System.out.println(outputLine);
             out.println(outputLine);
 
             while ((inputLine = in.readLine()) != null) {
-                output = kkp.processInput(inputLine);
-                if(output > 0) {
+                output = protocol.processInput(inputLine);
+                if(output != -6 && output != -7) {
                   out.println("get " + inputLine + ", return: " + output);
-                } else {
-                  if(output == -7) {
-                    out.println("return: -5 ");
+                  System.out.println("S> get " + inputLine + ", return: " + output);
+                } else if(output == -7) {
+                    out.println("get: bye, return -5");
+                    System.out.println("S> get: bye, return -5");
                     break;
-                  } else if(output == -6) {
-                    out.println("return: -5");
+                } else {
+                    out.println("get: bye, return -5");
+                    System.out.println("S> get: bye, return -5");
                     flag=false;
                     break;
-                  } else {
-                    out.println("return: " + output + " ");
-                  }
                 }
             }
 
